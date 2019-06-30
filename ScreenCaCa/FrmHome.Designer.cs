@@ -65,7 +65,7 @@
             // 
             // btnQuitApp
             // 
-            this.btnQuitApp.Location = new System.Drawing.Point(12, 12);
+            this.btnQuitApp.Location = new System.Drawing.Point(278, 306);
             this.btnQuitApp.Name = "btnQuitApp";
             this.btnQuitApp.Size = new System.Drawing.Size(119, 39);
             this.btnQuitApp.TabIndex = 2;
@@ -84,9 +84,9 @@
             this.gbScreenCast.Controls.Add(this.txtRefreshRate);
             this.gbScreenCast.Controls.Add(this.btnCastArea);
             this.gbScreenCast.Controls.Add(this.btnCastFullScreen);
-            this.gbScreenCast.Location = new System.Drawing.Point(12, 70);
+            this.gbScreenCast.Location = new System.Drawing.Point(12, 12);
             this.gbScreenCast.Name = "gbScreenCast";
-            this.gbScreenCast.Size = new System.Drawing.Size(379, 249);
+            this.gbScreenCast.Size = new System.Drawing.Size(385, 274);
             this.gbScreenCast.TabIndex = 3;
             this.gbScreenCast.TabStop = false;
             this.gbScreenCast.Text = "Screen Cast";
@@ -115,12 +115,10 @@
             // rbZoom
             // 
             this.rbZoom.AutoSize = true;
-            this.rbZoom.Checked = true;
             this.rbZoom.Location = new System.Drawing.Point(265, 197);
             this.rbZoom.Name = "rbZoom";
             this.rbZoom.Size = new System.Drawing.Size(52, 17);
             this.rbZoom.TabIndex = 10;
-            this.rbZoom.TabStop = true;
             this.rbZoom.Text = "Zoom";
             this.rbZoom.UseVisualStyleBackColor = true;
             this.rbZoom.CheckedChanged += new System.EventHandler(this.RbZoom_CheckedChanged);
@@ -139,10 +137,12 @@
             // rbStretch
             // 
             this.rbStretch.AutoSize = true;
+            this.rbStretch.Checked = true;
             this.rbStretch.Location = new System.Drawing.Point(136, 197);
             this.rbStretch.Name = "rbStretch";
             this.rbStretch.Size = new System.Drawing.Size(59, 17);
             this.rbStretch.TabIndex = 8;
+            this.rbStretch.TabStop = true;
             this.rbStretch.Text = "Stretch";
             this.rbStretch.UseVisualStyleBackColor = true;
             this.rbStretch.CheckedChanged += new System.EventHandler(this.RbStretch_CheckedChanged);
@@ -181,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 605);
+            this.ClientSize = new System.Drawing.Size(406, 350);
             this.Controls.Add(this.gbScreenCast);
             this.Controls.Add(this.btnQuitApp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -53,5 +53,31 @@ namespace ScreenCaCa
         {
 
         }
+
+        private FormBorderStyle PreviousFormBorderStyle { set; get; }
+        private FormWindowState PreviousWindowState { set; get; }
+
+
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            if (FormBorderStyle == FormBorderStyle.None && WindowState == FormWindowState.Maximized)
+            {
+                FormBorderStyle = PreviousFormBorderStyle;
+                WindowState = PreviousWindowState;
+            }
+            else
+            {
+                PreviousFormBorderStyle = FormBorderStyle;
+                PreviousWindowState = WindowState;
+                FormBorderStyle = FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void FrmScreenCast_Load(object sender, EventArgs e)
+        {
+            PreviousFormBorderStyle = FormBorderStyle;
+            PreviousWindowState = WindowState;
+        }
     }
 }
