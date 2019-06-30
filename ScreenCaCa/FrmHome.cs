@@ -9,7 +9,7 @@ namespace ScreenCaCa
     {
         private const int DefaultRefreshCastInMilliseconds = 200; // refresh in every 200 milliseconds by default
         public FrmScreenCast ScreenCastingForm { get; set; }
-        private Thread threadScreenTast;
+        private Thread ThreadScreenCast;
         public int GetCastRefreshDuration()
         {
             var refreshRate = txtRefreshRate.Text.ToInt();
@@ -69,8 +69,8 @@ namespace ScreenCaCa
             {
                 try
                 {
-                    threadScreenTast = new Thread(ScreenCastTask);
-                    threadScreenTast.Start();
+                    ThreadScreenCast = new Thread(ScreenCastTask);
+                    ThreadScreenCast.Start();
                     RefreshCastPauseStartStopButtons();
                     Application.DoEvents();
                 }
