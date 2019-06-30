@@ -88,30 +88,38 @@ namespace ScreenCaCa
 
         public void RefreshCastPauseStartStopButtons()
         {
-            if (IsScreenCastRunning)
+            try
             {
-                btnPauseStartScreenCast.Invoke(new Action(() =>
-                {
-                    btnPauseStartScreenCast.Visible = true;
-                    btnPauseStartScreenCast.Text = IsScreenCastPaused ? "Paused, click to Resume" : "Running, click to Pause";
-                }));
 
-                btnStopScreenCast.Invoke(new Action(() =>
+                if (IsScreenCastRunning)
                 {
-                    btnStopScreenCast.Visible = true;
-                }));
+                    btnPauseStartScreenCast.Invoke(new Action(() =>
+                    {
+                        btnPauseStartScreenCast.Visible = true;
+                        btnPauseStartScreenCast.Text = IsScreenCastPaused ? "Paused, click to Resume" : "Running, click to Pause";
+                    }));
+
+                    btnStopScreenCast.Invoke(new Action(() =>
+                    {
+                        btnStopScreenCast.Visible = true;
+                    }));
+                }
+                else
+                {
+                    btnPauseStartScreenCast.Invoke(new Action(() =>
+                    {
+                        btnPauseStartScreenCast.Visible = false;
+                    }));
+                    btnStopScreenCast.Invoke(new Action(() =>
+                    {
+                        btnStopScreenCast.Visible = false;
+                    }));
+                }
             }
-            else
+            catch (Exception)
             {
-                btnPauseStartScreenCast.Invoke(new Action(() =>
-                {
-                    btnPauseStartScreenCast.Visible = false;
-                }));
-                btnStopScreenCast.Invoke(new Action(() =>
-                {
-                    btnStopScreenCast.Visible = false;
-                }));
             }
+
         }
 
         public void ScreenCastTask()
