@@ -36,6 +36,10 @@
             this.btnStopScreenCast = new System.Windows.Forms.Button();
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.rbCenter = new System.Windows.Forms.RadioButton();
+            this.rbStretch = new System.Windows.Forms.RadioButton();
+            this.rbNormal = new System.Windows.Forms.RadioButton();
+            this.rbZoom = new System.Windows.Forms.RadioButton();
             this.gbScreenCast.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +65,7 @@
             // 
             // btnQuitApp
             // 
-            this.btnQuitApp.Location = new System.Drawing.Point(178, 280);
+            this.btnQuitApp.Location = new System.Drawing.Point(272, 280);
             this.btnQuitApp.Name = "btnQuitApp";
             this.btnQuitApp.Size = new System.Drawing.Size(119, 39);
             this.btnQuitApp.TabIndex = 2;
@@ -70,6 +74,10 @@
             // 
             // gbScreenCast
             // 
+            this.gbScreenCast.Controls.Add(this.rbZoom);
+            this.gbScreenCast.Controls.Add(this.rbNormal);
+            this.gbScreenCast.Controls.Add(this.rbStretch);
+            this.gbScreenCast.Controls.Add(this.rbCenter);
             this.gbScreenCast.Controls.Add(this.label1);
             this.gbScreenCast.Controls.Add(this.txtRefreshRate);
             this.gbScreenCast.Controls.Add(this.btnStopScreenCast);
@@ -78,7 +86,7 @@
             this.gbScreenCast.Controls.Add(this.btnCastFullScreen);
             this.gbScreenCast.Location = new System.Drawing.Point(12, 25);
             this.gbScreenCast.Name = "gbScreenCast";
-            this.gbScreenCast.Size = new System.Drawing.Size(285, 249);
+            this.gbScreenCast.Size = new System.Drawing.Size(379, 249);
             this.gbScreenCast.TabIndex = 3;
             this.gbScreenCast.TabStop = false;
             this.gbScreenCast.Text = "Screen Cast";
@@ -121,11 +129,57 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Refresh rate /sec";
             // 
+            // rbCenter
+            // 
+            this.rbCenter.AutoSize = true;
+            this.rbCenter.Location = new System.Drawing.Point(74, 197);
+            this.rbCenter.Name = "rbCenter";
+            this.rbCenter.Size = new System.Drawing.Size(56, 17);
+            this.rbCenter.TabIndex = 7;
+            this.rbCenter.Text = "Center";
+            this.rbCenter.UseVisualStyleBackColor = true;
+            this.rbCenter.CheckedChanged += new System.EventHandler(this.RbCenter_CheckedChanged);
+            // 
+            // rbStretch
+            // 
+            this.rbStretch.AutoSize = true;
+            this.rbStretch.Location = new System.Drawing.Point(136, 197);
+            this.rbStretch.Name = "rbStretch";
+            this.rbStretch.Size = new System.Drawing.Size(59, 17);
+            this.rbStretch.TabIndex = 8;
+            this.rbStretch.Text = "Stretch";
+            this.rbStretch.UseVisualStyleBackColor = true;
+            this.rbStretch.CheckedChanged += new System.EventHandler(this.RbStretch_CheckedChanged);
+            // 
+            // rbNormal
+            // 
+            this.rbNormal.AutoSize = true;
+            this.rbNormal.Location = new System.Drawing.Point(201, 197);
+            this.rbNormal.Name = "rbNormal";
+            this.rbNormal.Size = new System.Drawing.Size(58, 17);
+            this.rbNormal.TabIndex = 9;
+            this.rbNormal.Text = "Normal";
+            this.rbNormal.UseVisualStyleBackColor = true;
+            this.rbNormal.CheckedChanged += new System.EventHandler(this.RbNormal_CheckedChanged);
+            // 
+            // rbZoom
+            // 
+            this.rbZoom.AutoSize = true;
+            this.rbZoom.Checked = true;
+            this.rbZoom.Location = new System.Drawing.Point(265, 197);
+            this.rbZoom.Name = "rbZoom";
+            this.rbZoom.Size = new System.Drawing.Size(52, 17);
+            this.rbZoom.TabIndex = 10;
+            this.rbZoom.TabStop = true;
+            this.rbZoom.Text = "Zoom";
+            this.rbZoom.UseVisualStyleBackColor = true;
+            this.rbZoom.CheckedChanged += new System.EventHandler(this.RbZoom_CheckedChanged);
+            // 
             // FrmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 325);
+            this.ClientSize = new System.Drawing.Size(408, 325);
             this.Controls.Add(this.gbScreenCast);
             this.Controls.Add(this.btnQuitApp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -150,5 +204,9 @@
         private System.Windows.Forms.TextBox txtRefreshRate;
         private System.Windows.Forms.Button btnStopScreenCast;
         private System.Windows.Forms.Button btnPauseStartScreenCast;
+        private System.Windows.Forms.RadioButton rbCenter;
+        private System.Windows.Forms.RadioButton rbNormal;
+        private System.Windows.Forms.RadioButton rbStretch;
+        private System.Windows.Forms.RadioButton rbZoom;
     }
 }

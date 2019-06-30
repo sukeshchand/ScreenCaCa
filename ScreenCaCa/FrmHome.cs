@@ -115,5 +115,46 @@ namespace ScreenCaCa
         {
 
         }
+
+        private void RbZoom_CheckedChanged(object sender, EventArgs e)
+        {
+            ImageSizeModeChanged();
+        }
+
+        private void ImageSizeModeChanged()
+        {
+            if (ScreenCastingForm == null) return;
+            if (rbCenter.Checked)
+            {
+                ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.CenterImage;
+            }
+            else if (rbNormal.Checked)
+            {
+                ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.Normal;
+            }
+            else if (rbStretch.Checked)
+            {
+                ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else if (rbZoom.Checked)
+            {
+                ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.Zoom;
+            }
+        }
+        
+        private void RbCenter_CheckedChanged(object sender, EventArgs e)
+        {
+            ImageSizeModeChanged();
+        }
+
+        private void RbStretch_CheckedChanged(object sender, EventArgs e)
+        {
+            ImageSizeModeChanged();
+        }
+
+        private void RbNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            ImageSizeModeChanged();
+        }
     }
 }
