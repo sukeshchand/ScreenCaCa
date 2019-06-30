@@ -43,5 +43,10 @@ namespace ScreenCaCa
         {
 
         }
+
+        private void FrmScreenCast_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

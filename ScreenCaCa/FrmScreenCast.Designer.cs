@@ -61,6 +61,7 @@
             this.Controls.Add(this.picScreenCast);
             this.Name = "FrmScreenCast";
             this.Text = "Screen cast";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmScreenCast_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picScreenCast)).EndInit();
             this.ResumeLayout(false);
 

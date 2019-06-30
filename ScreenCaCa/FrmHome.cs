@@ -1,20 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Toy.Extensions.Extensions;
 namespace ScreenCaCa
 {
     public partial class FrmHome : Form
     {
+        private const int DefaultRefreshCastInMilliseconds = 200; // refresh in every 200 milliseconds by default
         public FrmScreenCast ScreenCastingForm { get; set; }
-        public bool IsScreenCasting { get; set; }
+        private Thread threadScreenTast;
+        public int GetCastRefreshDuration()
+        {
+            var refreshRate = txtRefreshRate.Text.ToInt();
+            if (refreshRate == null)
+            {
+                return DefaultRefreshCastInMilliseconds;
+            }
+
+            refreshRate = 1000 / refreshRate;
+            if (refreshRate > 1000 || refreshRate < 50)
+            {
+                return DefaultRefreshCastInMilliseconds;
+            }
+
+            return (int)refreshRate;
+        }
+
+        public bool IsScreenCastRunning { get; set; }
+        public bool IsScreenCastPaused { get; set; }
+
         public FrmHome()
         {
             InitializeComponent();
@@ -26,19 +41,25 @@ namespace ScreenCaCa
             {
                 btnCastArea.Enabled = true;
                 btnCastFullScreen.Enabled = true;
-
-                btnPauseStartScreenCast.Visible = false;
-                btnStopScreenCast.Visible = false;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 // todo log
             }
         }
 
-        private void BtnPauseStartScreenCast_Click(object sender, EventArgs e)
+        private void btnPauseStartScreenCast_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                IsScreenCastPaused = !IsScreenCastPaused;
+                RefreshCastPauseStartStopButtons();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
 
         private void BtnCastFullScreen_Click(object sender, EventArgs e)
@@ -47,9 +68,9 @@ namespace ScreenCaCa
             {
                 try
                 {
-
-                    var thread = new Thread(ScreenCastTask);
-                    thread.Start();
+                    threadScreenTast = new Thread(ScreenCastTask);
+                    threadScreenTast.Start();
+                    RefreshCastPauseStartStopButtons();
                 }
                 catch (Exception exception)
                 {
@@ -63,31 +84,59 @@ namespace ScreenCaCa
             }
         }
 
+        public void RefreshCastPauseStartStopButtons()
+        {
+            if (IsScreenCastRunning)
+            {
+                btnPauseStartScreenCast.Visible = true;
+                btnPauseStartScreenCast.Visible = true;
+                btnStopScreenCast.Visible = true;
+                btnPauseStartScreenCast.Text = IsScreenCastPaused ? "Paused, click to Resume" : "Running, click to Pause";
+                Application.DoEvents();
+            }
+            else
+            {
+                btnPauseStartScreenCast.Visible = false;
+                btnStopScreenCast.Visible = false;
+            }
+        }
+
         public void ScreenCastTask()
         {
-            if (IsScreenCasting) return;
+            if (IsScreenCastRunning)
+            {
+                return;
+            }
+
             if (ScreenCastingForm == null)
             {
                 ScreenCastingForm = new FrmScreenCast();
+                ScreenCastingForm.FormClosed += (sender, args) =>
+                {
+                    IsScreenCastRunning = false;
+                    RefreshCastPauseStartStopButtons();
+                };
             }
-            IsScreenCasting = true;
+            IsScreenCastRunning = true;
+            IsScreenCastPaused = false;
             ScreenCastingForm.Show();
             while (true)
             {
-                if (!IsScreenCasting)
+                if (!IsScreenCastRunning)
                 {
                     break;
                 }
-
                 try
                 {
-                    CaptureAndCastScreen();
-
+                    if (!IsScreenCastPaused)
+                    {
+                        CaptureAndCastScreen();
+                    }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
                 }
-                System.Threading.Thread.Sleep(100);
+                Thread.Sleep(GetCastRefreshDuration());
             }
         }
 
@@ -123,7 +172,11 @@ namespace ScreenCaCa
 
         private void ImageSizeModeChanged()
         {
-            if (ScreenCastingForm == null) return;
+            if (ScreenCastingForm == null)
+            {
+                return;
+            }
+
             if (rbCenter.Checked)
             {
                 ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.CenterImage;
@@ -141,7 +194,7 @@ namespace ScreenCaCa
                 ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.Zoom;
             }
         }
-        
+
         private void RbCenter_CheckedChanged(object sender, EventArgs e)
         {
             ImageSizeModeChanged();
@@ -155,6 +208,21 @@ namespace ScreenCaCa
         private void RbNormal_CheckedChanged(object sender, EventArgs e)
         {
             ImageSizeModeChanged();
+        }
+
+        private void btnStopScreenCast_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IsScreenCastRunning = false;
+                RefreshCastPauseStartStopButtons();
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
     }
 }
