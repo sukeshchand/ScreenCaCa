@@ -22,6 +22,11 @@ namespace ScreenCaCa
             }
         }
 
+        public void RefreshCast()
+        {
+            Application.DoEvents();
+        }
+
         public PictureBoxSizeMode PictureBoxImageSizeMode
         {
             get => picScreenCast.SizeMode;

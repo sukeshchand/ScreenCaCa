@@ -158,21 +158,22 @@
             // 
             // btnStopScreenCast
             // 
-            this.btnStopScreenCast.Location = new System.Drawing.Point(11, 88);
+            this.btnStopScreenCast.Location = new System.Drawing.Point(156, 77);
             this.btnStopScreenCast.Name = "btnStopScreenCast";
             this.btnStopScreenCast.Size = new System.Drawing.Size(119, 39);
             this.btnStopScreenCast.TabIndex = 11;
+            this.btnStopScreenCast.Text = "Stop screen cast";
             this.btnStopScreenCast.UseVisualStyleBackColor = true;
-            this.btnStopScreenCast.Click += new System.EventHandler(this.btnPauseStartScreenCast_Click);
+            this.btnStopScreenCast.Click += new System.EventHandler(this.btnStopScreenCast_Click);
             // 
             // btnPauseStartScreenCast
             // 
-            this.btnPauseStartScreenCast.Location = new System.Drawing.Point(156, 88);
+            this.btnPauseStartScreenCast.Location = new System.Drawing.Point(8, 77);
             this.btnPauseStartScreenCast.Name = "btnPauseStartScreenCast";
             this.btnPauseStartScreenCast.Size = new System.Drawing.Size(119, 39);
             this.btnPauseStartScreenCast.TabIndex = 12;
             this.btnPauseStartScreenCast.UseVisualStyleBackColor = true;
-            this.btnPauseStartScreenCast.Click += new System.EventHandler(this.btnStopScreenCast_Click);
+            this.btnPauseStartScreenCast.Click += new System.EventHandler(this.btnPauseStartScreenCast_Click);
             // 
             // FrmHome
             // 

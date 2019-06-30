@@ -54,6 +54,7 @@ namespace ScreenCaCa
             {
                 IsScreenCastPaused = !IsScreenCastPaused;
                 RefreshCastPauseStartStopButtons();
+                Application.DoEvents();
             }
             catch (Exception exception)
             {
@@ -71,6 +72,7 @@ namespace ScreenCaCa
                     threadScreenTast = new Thread(ScreenCastTask);
                     threadScreenTast.Start();
                     RefreshCastPauseStartStopButtons();
+                    Application.DoEvents();
                 }
                 catch (Exception exception)
                 {
@@ -88,16 +90,27 @@ namespace ScreenCaCa
         {
             if (IsScreenCastRunning)
             {
-                btnPauseStartScreenCast.Visible = true;
-                btnPauseStartScreenCast.Visible = true;
-                btnStopScreenCast.Visible = true;
-                btnPauseStartScreenCast.Text = IsScreenCastPaused ? "Paused, click to Resume" : "Running, click to Pause";
-                Application.DoEvents();
+                btnPauseStartScreenCast.Invoke(new Action(() =>
+                {
+                    btnPauseStartScreenCast.Visible = true;
+                    btnPauseStartScreenCast.Text = IsScreenCastPaused ? "Paused, click to Resume" : "Running, click to Pause";
+                }));
+
+                btnStopScreenCast.Invoke(new Action(() =>
+                {
+                    btnStopScreenCast.Visible = true;
+                }));
             }
             else
             {
-                btnPauseStartScreenCast.Visible = false;
-                btnStopScreenCast.Visible = false;
+                btnPauseStartScreenCast.Invoke(new Action(() =>
+                {
+                    btnPauseStartScreenCast.Visible = false;
+                }));
+                btnStopScreenCast.Invoke(new Action(() =>
+                {
+                    btnStopScreenCast.Visible = false;
+                }));
             }
         }
 
@@ -108,18 +121,23 @@ namespace ScreenCaCa
                 return;
             }
 
-            if (ScreenCastingForm == null)
+            if (ScreenCastingForm != null)
             {
-                ScreenCastingForm = new FrmScreenCast();
-                ScreenCastingForm.FormClosed += (sender, args) =>
-                {
-                    IsScreenCastRunning = false;
-                    RefreshCastPauseStartStopButtons();
-                };
+                ScreenCastingForm = null;
             }
+
+            ScreenCastingForm = new FrmScreenCast();
+            ScreenCastingForm.FormClosed += (sender, args) =>
+            {
+                IsScreenCastRunning = false;
+                RefreshCastPauseStartStopButtons();
+            };
+
             IsScreenCastRunning = true;
             IsScreenCastPaused = false;
+            RefreshCastPauseStartStopButtons();
             ScreenCastingForm.Show();
+
             while (true)
             {
                 if (!IsScreenCastRunning)
@@ -132,8 +150,12 @@ namespace ScreenCaCa
                     {
                         CaptureAndCastScreen();
                     }
+                    else
+                    {
+                        ScreenCastingForm.RefreshCast();
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
                 Thread.Sleep(GetCastRefreshDuration());
