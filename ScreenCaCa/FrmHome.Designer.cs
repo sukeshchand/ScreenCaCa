@@ -28,60 +28,127 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCastFullScreen = new System.Windows.Forms.Button();
+            this.btnCastArea = new System.Windows.Forms.Button();
+            this.btnQuitApp = new System.Windows.Forms.Button();
+            this.gbScreenCast = new System.Windows.Forms.GroupBox();
+            this.btnPauseStartScreenCast = new System.Windows.Forms.Button();
+            this.btnStopScreenCast = new System.Windows.Forms.Button();
+            this.txtRefreshRate = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gbScreenCast.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnCastFullScreen
             // 
-            this.button1.Location = new System.Drawing.Point(21, 57);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 39);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cast full screen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnCastFullScreen.Location = new System.Drawing.Point(8, 32);
+            this.btnCastFullScreen.Name = "btnCastFullScreen";
+            this.btnCastFullScreen.Size = new System.Drawing.Size(119, 39);
+            this.btnCastFullScreen.TabIndex = 0;
+            this.btnCastFullScreen.Text = "Cast full screen";
+            this.btnCastFullScreen.UseVisualStyleBackColor = true;
+            this.btnCastFullScreen.Click += new System.EventHandler(this.BtnCastFullScreen_Click);
             // 
-            // button2
+            // btnCastArea
             // 
-            this.button2.Location = new System.Drawing.Point(160, 57);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 39);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cast area";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCastArea.Location = new System.Drawing.Point(156, 32);
+            this.btnCastArea.Name = "btnCastArea";
+            this.btnCastArea.Size = new System.Drawing.Size(119, 39);
+            this.btnCastArea.TabIndex = 1;
+            this.btnCastArea.Text = "Cast area";
+            this.btnCastArea.UseVisualStyleBackColor = true;
+            this.btnCastArea.Click += new System.EventHandler(this.BtnCastArea_Click);
             // 
-            // button3
+            // btnQuitApp
             // 
-            this.button3.Location = new System.Drawing.Point(21, 118);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 39);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Quit Screen Ca Ca";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnQuitApp.Location = new System.Drawing.Point(178, 280);
+            this.btnQuitApp.Name = "btnQuitApp";
+            this.btnQuitApp.Size = new System.Drawing.Size(119, 39);
+            this.btnQuitApp.TabIndex = 2;
+            this.btnQuitApp.Text = "Quit Screen Ca Ca";
+            this.btnQuitApp.UseVisualStyleBackColor = true;
+            // 
+            // gbScreenCast
+            // 
+            this.gbScreenCast.Controls.Add(this.label1);
+            this.gbScreenCast.Controls.Add(this.txtRefreshRate);
+            this.gbScreenCast.Controls.Add(this.btnStopScreenCast);
+            this.gbScreenCast.Controls.Add(this.btnPauseStartScreenCast);
+            this.gbScreenCast.Controls.Add(this.btnCastArea);
+            this.gbScreenCast.Controls.Add(this.btnCastFullScreen);
+            this.gbScreenCast.Location = new System.Drawing.Point(12, 25);
+            this.gbScreenCast.Name = "gbScreenCast";
+            this.gbScreenCast.Size = new System.Drawing.Size(285, 249);
+            this.gbScreenCast.TabIndex = 3;
+            this.gbScreenCast.TabStop = false;
+            this.gbScreenCast.Text = "Screen Cast";
+            // 
+            // btnPauseStartScreenCast
+            // 
+            this.btnPauseStartScreenCast.Location = new System.Drawing.Point(8, 96);
+            this.btnPauseStartScreenCast.Name = "btnPauseStartScreenCast";
+            this.btnPauseStartScreenCast.Size = new System.Drawing.Size(119, 39);
+            this.btnPauseStartScreenCast.TabIndex = 2;
+            this.btnPauseStartScreenCast.Text = "Pause screen cast";
+            this.btnPauseStartScreenCast.UseVisualStyleBackColor = true;
+            this.btnPauseStartScreenCast.Click += new System.EventHandler(this.BtnPauseStartScreenCast_Click);
+            // 
+            // btnStopScreenCast
+            // 
+            this.btnStopScreenCast.Location = new System.Drawing.Point(156, 96);
+            this.btnStopScreenCast.Name = "btnStopScreenCast";
+            this.btnStopScreenCast.Size = new System.Drawing.Size(119, 39);
+            this.btnStopScreenCast.TabIndex = 3;
+            this.btnStopScreenCast.Text = "Stop screen cast";
+            this.btnStopScreenCast.UseVisualStyleBackColor = true;
+            // 
+            // txtRefreshRate
+            // 
+            this.txtRefreshRate.Location = new System.Drawing.Point(114, 157);
+            this.txtRefreshRate.MaxLength = 2;
+            this.txtRefreshRate.Name = "txtRefreshRate";
+            this.txtRefreshRate.Size = new System.Drawing.Size(84, 20);
+            this.txtRefreshRate.TabIndex = 4;
+            this.txtRefreshRate.Text = "10";
+            this.txtRefreshRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Refresh rate /sec";
             // 
             // FrmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 202);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(304, 325);
+            this.Controls.Add(this.gbScreenCast);
+            this.Controls.Add(this.btnQuitApp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Screen Ca Ca";
+            this.Load += new System.EventHandler(this.FrmHome_Load);
+            this.gbScreenCast.ResumeLayout(false);
+            this.gbScreenCast.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCastFullScreen;
+        private System.Windows.Forms.Button btnCastArea;
+        private System.Windows.Forms.Button btnQuitApp;
+        private System.Windows.Forms.GroupBox gbScreenCast;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtRefreshRate;
+        private System.Windows.Forms.Button btnStopScreenCast;
+        private System.Windows.Forms.Button btnPauseStartScreenCast;
     }
 }
