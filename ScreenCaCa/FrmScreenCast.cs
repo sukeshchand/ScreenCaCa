@@ -44,11 +44,6 @@ namespace ScreenCaCa
             InitializeComponent();
         }
 
-        private void PicScreenCast_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FrmScreenCast_FormClosed(object sender, FormClosedEventArgs e)
         {
 
@@ -57,8 +52,7 @@ namespace ScreenCaCa
         private FormBorderStyle PreviousFormBorderStyle { set; get; }
         private FormWindowState PreviousWindowState { set; get; }
 
-
-        private void btnFullScreen_Click(object sender, EventArgs e)
+        public void SetFullScreen()
         {
             if (FormBorderStyle == FormBorderStyle.None && WindowState == FormWindowState.Maximized)
             {
@@ -73,11 +67,20 @@ namespace ScreenCaCa
                 WindowState = FormWindowState.Maximized;
             }
         }
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            SetFullScreen();
+        }
 
         private void FrmScreenCast_Load(object sender, EventArgs e)
         {
             PreviousFormBorderStyle = FormBorderStyle;
             PreviousWindowState = WindowState;
+        }
+
+        private void PicScreenCast_DoubleClick(object sender, EventArgs e)
+        {
+            SetFullScreen();
         }
     }
 }

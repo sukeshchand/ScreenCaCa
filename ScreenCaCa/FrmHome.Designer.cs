@@ -71,6 +71,7 @@
             this.btnQuitApp.TabIndex = 2;
             this.btnQuitApp.Text = "Quit Screen Ca Ca";
             this.btnQuitApp.UseVisualStyleBackColor = true;
+            this.btnQuitApp.Click += new System.EventHandler(this.BtnQuitApp_Click);
             // 
             // gbScreenCast
             // 
@@ -189,6 +190,7 @@
             this.Name = "FrmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Screen Ca Ca";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHome_FormClosing);
             this.Load += new System.EventHandler(this.FrmHome_Load);
             this.gbScreenCast.ResumeLayout(false);
             this.gbScreenCast.PerformLayout();

@@ -63,12 +63,26 @@ namespace ScreenCaCa
             }
         }
 
+        public Rectangle GetScreen()
+        {
+            return Screen.FromControl(this).Bounds;
+        }
+
         private void BtnCastFullScreen_Click(object sender, EventArgs e)
         {
             try
             {
                 try
                 {
+                    var height = Screen.FromHandle(this.Handle).WorkingArea.Height;
+                    ScreenShot.CurrentHeight = height;
+                    ScreenShot.CurrentWidth = GetScreen().Width;
+                    ScreenShot.CurrentX = 1;
+                    ScreenShot.CurrentY = 1;
+
+
+                    if (ThreadScreenCast != null && ThreadScreenCast.IsAlive) return;
+
                     ThreadScreenCast = new Thread(ScreenCastTask);
                     ThreadScreenCast.Start();
                     RefreshCastPauseStartStopButtons();
@@ -81,8 +95,8 @@ namespace ScreenCaCa
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
-                throw;
+                //Console.WriteLine(exception);
+                //throw;
             }
         }
 
@@ -173,14 +187,15 @@ namespace ScreenCaCa
         public void CaptureAndCastScreen()
         {
 
+            if (ScreenShot.CurrentWidth < 1 || ScreenShot.CurrentHeight < 1 || ScreenShot.CurrentX < 1 ||
+                ScreenShot.CurrentY < 1) return;
             Image img = null;
-            using (var bitmap = new Bitmap(500, 500))
+            using (var bitmap = new Bitmap(ScreenShot.CurrentWidth, ScreenShot.CurrentHeight))
             {
 
                 using (var g = Graphics.FromImage(bitmap))
                 {
-
-                    g.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(500, 500));
+                    g.CopyFromScreen(new Point(ScreenShot.CurrentX, ScreenShot.CurrentY), new Point(0, 0), new Size(ScreenShot.CurrentWidth, ScreenShot.CurrentHeight));
                 }
 
                 img = (Image)(bitmap.Clone());
@@ -192,7 +207,12 @@ namespace ScreenCaCa
 
         private void BtnCastArea_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var form1 = new FrmDraw
+            {
+                InstanceRef = this
+            };
+            form1.Show();
         }
 
         private void RbZoom_CheckedChanged(object sender, EventArgs e)
@@ -252,6 +272,23 @@ namespace ScreenCaCa
             {
                 Console.WriteLine(exception);
                 throw;
+            }
+        }
+
+        public bool isExistStarted = false;
+
+        private void BtnQuitApp_Click(object sender, EventArgs e)
+        {
+            isExistStarted = true;
+            Application.Exit();
+        }
+
+        private void FrmHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isExistStarted)
+            {
+                e.Cancel = true;
+                WindowState = FormWindowState.Minimized;
             }
         }
     }
