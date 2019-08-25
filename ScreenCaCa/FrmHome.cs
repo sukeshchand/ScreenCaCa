@@ -202,6 +202,7 @@ namespace ScreenCaCa
             }
 
             ScreenCastingForm.PictureBoxImage = img;
+            img.Dispose();
         }
 
 
