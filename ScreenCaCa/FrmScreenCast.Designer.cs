@@ -53,6 +53,7 @@
             this.picScreenCast.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picScreenCast.TabIndex = 1;
             this.picScreenCast.TabStop = false;
+            this.picScreenCast.Click += new System.EventHandler(this.PicScreenCast_Click);
             this.picScreenCast.DoubleClick += new System.EventHandler(this.PicScreenCast_DoubleClick);
             // 
             // FrmScreenCast

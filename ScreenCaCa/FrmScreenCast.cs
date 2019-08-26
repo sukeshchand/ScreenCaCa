@@ -27,6 +27,8 @@ namespace ScreenCaCa
             Application.DoEvents();
         }
 
+        public bool ShowCursor { get; set; }
+
         public PictureBoxSizeMode PictureBoxImageSizeMode
         {
             get => picScreenCast.SizeMode;
@@ -81,6 +83,11 @@ namespace ScreenCaCa
         private void PicScreenCast_DoubleClick(object sender, EventArgs e)
         {
             SetFullScreen();
+        }
+
+        private void PicScreenCast_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

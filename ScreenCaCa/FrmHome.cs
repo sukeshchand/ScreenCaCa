@@ -10,6 +10,7 @@ namespace ScreenCaCa
         private const int DefaultRefreshCastInMilliseconds = 200; // refresh in every 200 milliseconds by default
         public FrmScreenCast ScreenCastingForm { get; set; }
         private Thread ThreadScreenCast;
+
         public int GetCastRefreshDuration()
         {
             var refreshRate = txtRefreshRate.Text.ToInt();
@@ -177,13 +178,13 @@ namespace ScreenCaCa
                         ScreenCastingForm.RefreshCast();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                 }
                 Thread.Sleep(GetCastRefreshDuration());
             }
         }
-
+      
         public void CaptureAndCastScreen()
         {
 
@@ -196,6 +197,28 @@ namespace ScreenCaCa
                 using (var g = Graphics.FromImage(bitmap))
                 {
                     g.CopyFromScreen(new Point(ScreenShot.CurrentX, ScreenShot.CurrentY), new Point(0, 0), new Size(ScreenShot.CurrentWidth, ScreenShot.CurrentHeight));
+
+                    // lblXY.Invoke(new Action(() =>
+                    // {
+                    //     lblXY.Text = $"x:{Cursor.Position.X}, y:{Cursor.Position.Y}, screenHeight:{GetScreen().Height},ScreenWidth:{GetScreen().Width} x1:{ScreenShot.CurrentX},y1:{ScreenShot.CurrentY}";
+                    // }));
+                    //if (Cursor.Position.X > 0 && Cursor.Position.Y > 0 && Cursor.Position.X < GetScreen().Width && Cursor.Position.Y < GetScreen().Height)
+                    //{
+                    //    var x = ExtensionMethods.Map(Cursor.Position.X, 0, GetScreen().Width, 0,ScreenShot.CurrentWidth);
+                    //    var y = ExtensionMethods.Map(Cursor.Position.Y, 0, GetScreen().Height, 0,ScreenShot.CurrentHeight);
+                    //    g.DrawIcon(new Icon("curser2.ico"), x - 50, y - 50);
+                    //}
+                    //The reason I minus 50 in the position is because you need to "offset" the position. Please go check out the post WholsRich commented.
+                    if (ScreenShot.ShowCursor)
+                    {
+                        try
+                        {
+                            g.DrawIcon(new Icon("curser2.ico"), Cursor.Position.X - 50, Cursor.Position.Y - 50);
+                        }
+                        catch (Exception e)
+                        {
+                        }
+                    }
                 }
 
                 img = (Image)(bitmap.Clone());
@@ -228,6 +251,9 @@ namespace ScreenCaCa
                 return;
             }
 
+
+            ScreenShot.ShowCursor = chkShowCurser.Checked;
+            
             if (rbCenter.Checked)
             {
                 ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.CenterImage;
@@ -291,6 +317,11 @@ namespace ScreenCaCa
                 e.Cancel = true;
                 WindowState = FormWindowState.Minimized;
             }
+        }
+
+        private void ChkShowCurser_CheckedChanged(object sender, EventArgs e)
+        {
+            ImageSizeModeChanged();
         }
     }
 }

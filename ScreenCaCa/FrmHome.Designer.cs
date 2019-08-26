@@ -40,6 +40,8 @@
             this.rbCenter = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
+            this.lblXY = new System.Windows.Forms.Label();
+            this.chkShowCurser = new System.Windows.Forms.CheckBox();
             this.gbScreenCast.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,9 +67,9 @@
             // 
             // btnQuitApp
             // 
-            this.btnQuitApp.Location = new System.Drawing.Point(278, 306);
+            this.btnQuitApp.Location = new System.Drawing.Point(244, 199);
             this.btnQuitApp.Name = "btnQuitApp";
-            this.btnQuitApp.Size = new System.Drawing.Size(119, 39);
+            this.btnQuitApp.Size = new System.Drawing.Size(53, 21);
             this.btnQuitApp.TabIndex = 2;
             this.btnQuitApp.Text = "Quit Screen Ca Ca";
             this.btnQuitApp.UseVisualStyleBackColor = true;
@@ -75,6 +77,7 @@
             // 
             // gbScreenCast
             // 
+            this.gbScreenCast.Controls.Add(this.chkShowCurser);
             this.gbScreenCast.Controls.Add(this.btnPauseStartScreenCast);
             this.gbScreenCast.Controls.Add(this.btnStopScreenCast);
             this.gbScreenCast.Controls.Add(this.rbZoom);
@@ -87,7 +90,7 @@
             this.gbScreenCast.Controls.Add(this.btnCastFullScreen);
             this.gbScreenCast.Location = new System.Drawing.Point(12, 12);
             this.gbScreenCast.Name = "gbScreenCast";
-            this.gbScreenCast.Size = new System.Drawing.Size(385, 274);
+            this.gbScreenCast.Size = new System.Drawing.Size(285, 185);
             this.gbScreenCast.TabIndex = 3;
             this.gbScreenCast.TabStop = false;
             this.gbScreenCast.Text = "Screen Cast";
@@ -116,7 +119,7 @@
             // rbZoom
             // 
             this.rbZoom.AutoSize = true;
-            this.rbZoom.Location = new System.Drawing.Point(265, 197);
+            this.rbZoom.Location = new System.Drawing.Point(199, 154);
             this.rbZoom.Name = "rbZoom";
             this.rbZoom.Size = new System.Drawing.Size(52, 17);
             this.rbZoom.TabIndex = 10;
@@ -127,7 +130,7 @@
             // rbNormal
             // 
             this.rbNormal.AutoSize = true;
-            this.rbNormal.Location = new System.Drawing.Point(201, 197);
+            this.rbNormal.Location = new System.Drawing.Point(135, 154);
             this.rbNormal.Name = "rbNormal";
             this.rbNormal.Size = new System.Drawing.Size(58, 17);
             this.rbNormal.TabIndex = 9;
@@ -139,7 +142,7 @@
             // 
             this.rbStretch.AutoSize = true;
             this.rbStretch.Checked = true;
-            this.rbStretch.Location = new System.Drawing.Point(136, 197);
+            this.rbStretch.Location = new System.Drawing.Point(70, 154);
             this.rbStretch.Name = "rbStretch";
             this.rbStretch.Size = new System.Drawing.Size(59, 17);
             this.rbStretch.TabIndex = 8;
@@ -151,7 +154,7 @@
             // rbCenter
             // 
             this.rbCenter.AutoSize = true;
-            this.rbCenter.Location = new System.Drawing.Point(74, 197);
+            this.rbCenter.Location = new System.Drawing.Point(8, 154);
             this.rbCenter.Name = "rbCenter";
             this.rbCenter.Size = new System.Drawing.Size(56, 17);
             this.rbCenter.TabIndex = 7;
@@ -162,7 +165,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 160);
+            this.label1.Location = new System.Drawing.Point(15, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 5;
@@ -170,7 +173,7 @@
             // 
             // txtRefreshRate
             // 
-            this.txtRefreshRate.Location = new System.Drawing.Point(114, 157);
+            this.txtRefreshRate.Location = new System.Drawing.Point(111, 126);
             this.txtRefreshRate.MaxLength = 2;
             this.txtRefreshRate.Name = "txtRefreshRate";
             this.txtRefreshRate.Size = new System.Drawing.Size(84, 20);
@@ -178,11 +181,32 @@
             this.txtRefreshRate.Text = "10";
             this.txtRefreshRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // lblXY
+            // 
+            this.lblXY.AutoSize = true;
+            this.lblXY.Location = new System.Drawing.Point(320, 235);
+            this.lblXY.Name = "lblXY";
+            this.lblXY.Size = new System.Drawing.Size(27, 13);
+            this.lblXY.TabIndex = 13;
+            this.lblXY.Text = "XY: ";
+            // 
+            // chkShowCurser
+            // 
+            this.chkShowCurser.AutoSize = true;
+            this.chkShowCurser.Location = new System.Drawing.Point(198, 129);
+            this.chkShowCurser.Name = "chkShowCurser";
+            this.chkShowCurser.Size = new System.Drawing.Size(85, 17);
+            this.chkShowCurser.TabIndex = 13;
+            this.chkShowCurser.Text = "Show cursor";
+            this.chkShowCurser.UseVisualStyleBackColor = true;
+            this.chkShowCurser.CheckedChanged += new System.EventHandler(this.ChkShowCurser_CheckedChanged);
+            // 
             // FrmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 350);
+            this.ClientSize = new System.Drawing.Size(309, 224);
+            this.Controls.Add(this.lblXY);
             this.Controls.Add(this.gbScreenCast);
             this.Controls.Add(this.btnQuitApp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -195,6 +219,7 @@
             this.gbScreenCast.ResumeLayout(false);
             this.gbScreenCast.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -212,5 +237,7 @@
         private System.Windows.Forms.RadioButton rbZoom;
         private System.Windows.Forms.Button btnPauseStartScreenCast;
         private System.Windows.Forms.Button btnStopScreenCast;
+        private System.Windows.Forms.Label lblXY;
+        private System.Windows.Forms.CheckBox chkShowCurser;
     }
 }

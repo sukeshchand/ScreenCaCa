@@ -9,7 +9,7 @@ namespace ScreenCaCa
 {
     class ScreenShot
     {
-
+        public static bool ShowCursor { set; get; }
         public static int CurrentX { set; get; }
         public static int CurrentY { set; get; }
         public static int CurrentWidth { set; get; }
