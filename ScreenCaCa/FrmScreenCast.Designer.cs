@@ -50,7 +50,7 @@
             this.picScreenCast.Location = new System.Drawing.Point(0, 0);
             this.picScreenCast.Name = "picScreenCast";
             this.picScreenCast.Size = new System.Drawing.Size(800, 450);
-            this.picScreenCast.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picScreenCast.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picScreenCast.TabIndex = 1;
             this.picScreenCast.TabStop = false;
             this.picScreenCast.Click += new System.EventHandler(this.PicScreenCast_Click);

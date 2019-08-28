@@ -32,6 +32,7 @@
             this.btnCastArea = new System.Windows.Forms.Button();
             this.btnQuitApp = new System.Windows.Forms.Button();
             this.gbScreenCast = new System.Windows.Forms.GroupBox();
+            this.chkShowCurser = new System.Windows.Forms.CheckBox();
             this.btnPauseStartScreenCast = new System.Windows.Forms.Button();
             this.btnStopScreenCast = new System.Windows.Forms.Button();
             this.rbZoom = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
             this.lblXY = new System.Windows.Forms.Label();
-            this.chkShowCurser = new System.Windows.Forms.CheckBox();
             this.gbScreenCast.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +95,19 @@
             this.gbScreenCast.TabStop = false;
             this.gbScreenCast.Text = "Screen Cast";
             // 
+            // chkShowCurser
+            // 
+            this.chkShowCurser.AutoSize = true;
+            this.chkShowCurser.Checked = true;
+            this.chkShowCurser.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowCurser.Location = new System.Drawing.Point(198, 129);
+            this.chkShowCurser.Name = "chkShowCurser";
+            this.chkShowCurser.Size = new System.Drawing.Size(85, 17);
+            this.chkShowCurser.TabIndex = 13;
+            this.chkShowCurser.Text = "Show cursor";
+            this.chkShowCurser.UseVisualStyleBackColor = true;
+            this.chkShowCurser.CheckedChanged += new System.EventHandler(this.ChkShowCurser_CheckedChanged);
+            // 
             // btnPauseStartScreenCast
             // 
             this.btnPauseStartScreenCast.Location = new System.Drawing.Point(8, 77);
@@ -119,10 +132,12 @@
             // rbZoom
             // 
             this.rbZoom.AutoSize = true;
+            this.rbZoom.Checked = true;
             this.rbZoom.Location = new System.Drawing.Point(199, 154);
             this.rbZoom.Name = "rbZoom";
             this.rbZoom.Size = new System.Drawing.Size(52, 17);
             this.rbZoom.TabIndex = 10;
+            this.rbZoom.TabStop = true;
             this.rbZoom.Text = "Zoom";
             this.rbZoom.UseVisualStyleBackColor = true;
             this.rbZoom.CheckedChanged += new System.EventHandler(this.RbZoom_CheckedChanged);
@@ -141,12 +156,10 @@
             // rbStretch
             // 
             this.rbStretch.AutoSize = true;
-            this.rbStretch.Checked = true;
             this.rbStretch.Location = new System.Drawing.Point(70, 154);
             this.rbStretch.Name = "rbStretch";
             this.rbStretch.Size = new System.Drawing.Size(59, 17);
             this.rbStretch.TabIndex = 8;
-            this.rbStretch.TabStop = true;
             this.rbStretch.Text = "Stretch";
             this.rbStretch.UseVisualStyleBackColor = true;
             this.rbStretch.CheckedChanged += new System.EventHandler(this.RbStretch_CheckedChanged);
@@ -189,17 +202,6 @@
             this.lblXY.Size = new System.Drawing.Size(27, 13);
             this.lblXY.TabIndex = 13;
             this.lblXY.Text = "XY: ";
-            // 
-            // chkShowCurser
-            // 
-            this.chkShowCurser.AutoSize = true;
-            this.chkShowCurser.Location = new System.Drawing.Point(198, 129);
-            this.chkShowCurser.Name = "chkShowCurser";
-            this.chkShowCurser.Size = new System.Drawing.Size(85, 17);
-            this.chkShowCurser.TabIndex = 13;
-            this.chkShowCurser.Text = "Show cursor";
-            this.chkShowCurser.UseVisualStyleBackColor = true;
-            this.chkShowCurser.CheckedChanged += new System.EventHandler(this.ChkShowCurser_CheckedChanged);
             // 
             // FrmHome
             // 

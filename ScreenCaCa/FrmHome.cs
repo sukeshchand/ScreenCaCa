@@ -42,6 +42,9 @@ namespace ScreenCaCa
             {
                 btnCastArea.Enabled = true;
                 btnCastFullScreen.Enabled = true;
+                chkShowCurser.Checked = true;
+                ScreenShot.ShowCursor = true;
+                ScreenCastingForm.PictureBoxImageSizeMode = PictureBoxSizeMode.Zoom;
             }
             catch (Exception)
             {
