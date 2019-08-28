@@ -216,7 +216,7 @@ namespace ScreenCaCa
                     {
                         try
                         {
-                            g.DrawIcon(new Icon("curser2.ico"), Cursor.Position.X - 50, Cursor.Position.Y - 50);
+                            g.DrawIcon(new Icon("curser2.ico"), Cursor.Position.X - ScreenShot.CurrentX, Cursor.Position.Y - ScreenShot.CurrentY);
                         }
                         catch (Exception e)
                         {
